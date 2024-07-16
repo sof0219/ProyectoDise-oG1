@@ -29,35 +29,4 @@ public class ArbolController {
         return "/categoria/listado";
         
     }
-    @Autowired
-    private FirebaseStorageService firebaseStorageService;
     
-    @PostMapping("/guardar")
-    public String guardar(Arbol categoria,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {
-        
-        if (!imagenFile.isEmpty()) {
-            //Se sube la imagen al Storage
-            categoriaService.save(categoria);
-            String rutaImagen=firebaseStorageService.cargaImagen(imagenFile, 
-                    "categoria", categoria.getIdArbol());
-            categoria.setRutaImagen(rutaImagen);
-        }
-        categoriaService.save(categoria);
-        return "redirect:/categoria/listado";
-    }
-    
-    @GetMapping("/eliminar/{idArbol}")
-    public String eliminar(Arbol categoria) {
-        categoriaService.delete(categoria);
-        return "redirect:/categoria/listado";
-    }
-    
-    @GetMapping("/modificar/{idArbol}")
-    public String modificar(Arbol categoria, Model model) {
-        categoria = categoriaService.getCategoria(categoria);
-        model.addAttribute("categoria", categoria);
-        return "/categoria/modifica";
-    }
-        
-}
