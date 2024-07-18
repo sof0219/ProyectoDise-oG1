@@ -4,23 +4,23 @@
  */
 package com.CasoPractico_1.service.impl;
 
-import com.CasoPractico_1.domain.Arbol;
+import com.CasoPractico_1.domain.Cita;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.CasoPractico_1.dao.ArbolDao;
-import com.CasoPractico_1.services.ArbolService;
+import com.CasoPractico_1.services.CitaService;
+import com.CasoPractico_1.dao.CitaDao;
 
 @Service
-public class ArbolServiceImpl implements ArbolService {
+public class CitaServiceImpl implements CitaService {
     
     @Autowired
-    private ArbolDao categoriaDao;
+    private CitaDao categoriaDao;
 
     @Override
     @Transactional(readOnly = true)
-    public List<Arbol> getCategoria(boolean activos) {
+    public List<Cita> getCategoria(boolean activos) {
         var lista = categoriaDao.findAll();
         
         if (activos){
@@ -32,19 +32,19 @@ public class ArbolServiceImpl implements ArbolService {
 
     @Override
     @Transactional(readOnly = true)
-    public Arbol getCategoria(Arbol categoria) {
-        return categoriaDao.findById(categoria.getIdArbol()).orElse(null);
+    public Cita getCategoria(Cita categoria) {
+        return categoriaDao.findById(categoria.getIdCita()).orElse(null);
     }
 
     @Override
     @Transactional
-    public void save(Arbol categoria) {
+    public void save(Cita categoria) {
         categoriaDao.save(categoria);
     }
 
     @Override
     @Transactional
-    public void delete(Arbol categoria) {
+    public void delete(Cita categoria) {
         categoriaDao.delete(categoria);
   
     }

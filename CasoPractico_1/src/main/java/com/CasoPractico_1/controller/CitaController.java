@@ -1,7 +1,7 @@
 
 package com.CasoPractico_1.controller;
 
-import com.CasoPractico_1.domain.Arbol;
+import com.CasoPractico_1.domain.Cita;
 import com.CasoPractico_1.services.FirebaseStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import com.CasoPractico_1.services.ArbolService;
+import com.CasoPractico_1.services.CitaService;
 
 @Controller
-@RequestMapping("/categoria")
-public class ArbolController {
+@RequestMapping("/cita")
+public class CitaController {
     
     @Autowired
-    private ArbolService categoriaService;
+    private CitaService citaService;
     
     @GetMapping("/listado")
     public String listado(Model model){
-        var lista = categoriaService.getCategoria(false);
-        model.addAttribute("categorias", lista);
-        model.addAttribute("totalCategorias", lista.size());
+        var lista = citaService.getCita(false);
+        model.addAttribute("citas", lista);
+        model.addAttribute("totalCitas", lista.size());
         
-        return "/categoria/listado";
+        return "/cita/listado";
         
     }
-    
+}    
