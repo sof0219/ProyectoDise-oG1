@@ -1,4 +1,4 @@
-package com.WCH_CONTRUCTORA;
+package com.WCH_CONSTRUCTORA;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

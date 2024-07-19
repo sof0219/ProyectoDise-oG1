@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.WCH_CONTRUCTORA.service.impl;
+package com.WCH_CONSTRUCTORA.service.impl;
 
-import com.WCH_CONTRUCTORA.domain.Registro;
+import com.WCH_CONSTRUCTORA.domain.Registro;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.WCH_CONTRUCTORA.dao.RegistroDao;
-import com.WCH_CONTRUCTORA.services.RegistroService;
+import com.WCH_CONSTRUCTORA.dao.RegistroDao;
+import com.WCH_CONSTRUCTORA.services.RegistroService;
 
 @Service
 public class RegistroServiceImpl implements RegistroService {

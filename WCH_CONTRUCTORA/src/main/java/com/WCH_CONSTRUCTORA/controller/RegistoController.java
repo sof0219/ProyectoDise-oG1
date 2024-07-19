@@ -1,8 +1,8 @@
 
-package com.WCH_CONTRUCTORA.controller;
+package com.WCH_CONSTRUCTORA.controller;
 
-import com.WCH_CONTRUCTORA.domain.Registro;
-import com.WCH_CONTRUCTORA.services.FirebaseStorageService;
+import com.WCH_CONSTRUCTORA.domain.Registro;
+import com.WCH_CONSTRUCTORA.services.FirebaseStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import com.WCH_CONTRUCTORA.services.RegistroService;
+import com.WCH_CONSTRUCTORA.services.RegistroService;
 
 @Controller
 @RequestMapping("/registro")

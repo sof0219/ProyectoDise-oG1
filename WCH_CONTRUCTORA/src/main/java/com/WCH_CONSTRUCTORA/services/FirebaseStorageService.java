@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package com.WCH_CONTRUCTORA.services;
+package com.WCH_CONSTRUCTORA.services;
 
 import org.springframework.web.multipart.MultipartFile;
 

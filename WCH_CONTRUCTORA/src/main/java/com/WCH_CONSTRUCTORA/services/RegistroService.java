@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package com.WCH_CONTRUCTORA.services;
+package com.WCH_CONSTRUCTORA.services;
 
-import com.WCH_CONTRUCTORA.domain.Registro;
+import com.WCH_CONSTRUCTORA.domain.Registro;
 import java.util.List;
 
 /**

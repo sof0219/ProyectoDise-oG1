@@ -1,7 +1,7 @@
 
-package com.WCH_CONTRUCTORA.dao;
+package com.WCH_CONSTRUCTORA.dao;
 
-import com.WCH_CONTRUCTORA.domain.Registro;
+import com.WCH_CONSTRUCTORA.domain.Registro;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
