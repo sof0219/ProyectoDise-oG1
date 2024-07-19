@@ -1,28 +1,5 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{layout/plantilla :: head}">
-        <title>Prueba_01</title>
-        <meta charset="UTF-8"/> 
-    </head>
-    <body>
-        <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
-        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">   
-                        <button 
-                            type="button" 
-                            class="btn btn-primary btn-block" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#agregarRegistro">
-                            <i class="fas fa-plus"></i> [[#{registro.agregar}]]
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
 
+<<<<<<< HEAD
         <!-- 2 Fragmento para agregar registro, es la ventana modal -->
         <section th:fragment="agregarRegistro">
             <div id="agregarRegistro" 
@@ -394,6 +371,8 @@
             <div class="container">
                
 
+=======
+>>>>>>> 43f9961a76ce02242d4b7645a863e8df230ca2f8
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
