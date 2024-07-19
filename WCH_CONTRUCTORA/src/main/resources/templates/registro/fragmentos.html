@@ -49,16 +49,16 @@
                                     <input type="text" class="form-control" name="apellido" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="numero">[[#{registro.numero}]]</label>
-                                    <input type="number" class="form-control" name="numero" required="true"/>
+                                    <label for="numero">[[#{registro.telefono}]]</label>
+                                    <input type="number" class="form-control" name="telefono" required="true"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="correo">[[#{registro.correo}]]</label>
                                     <input type="email" class="form-control" name="correo" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="contraseña">[[#{registro.contraseña}]]</label>
-                                    <input type="password" class="form-control" name="contraseña" required="true"/>
+                                    <label for="contraseña">[[#{registro.password}]]</label>
+                                    <input type="password" class="form-control" name="password" required="true"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="activo">[[#{registro.activo}]]</label>
@@ -88,7 +88,7 @@
                                         <tr><th>#</th>
                                             <th>[[#{registro.nombre}]]</th>
                                             <th>[[#{registro.apellido}]]</th>
-                                            <th>[[#{registro.numero}]]</th>
+                                            <th>[[#{registro.telefono}]]</th>
                                             <th>[[#{registro.correo}]]</th>
                                             <th>[[#{registro.activo}]]</th>
                                             <th></th></tr>
@@ -98,13 +98,13 @@
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${registro.nombre}]]</td>
                                             <td>[[${registro.apellido}]]</td>
-                                            <td>[[${registro.numero}]]</td>
+                                            <td>[[${registro.telefono}]]</td>
                                             <td>[[${registro.correo}]]</td>
                                             <td th:text="${registro.activo} ? 'Activo' : 'Inactivo'" />
-                                            <td><a th:href="@{/registro/eliminar/}+${registro.idRegistro}"
+                                            <td><a th:href="@{/registro/eliminar/}+${registro.idCliente}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
-                                                <a th:href="@{/registro/modificar/}+${registro.idRegistro}"
+                                                <a th:href="@{/registro/modificar/}+${registro.idCliente}"
                                                    class="btn btn-success">
                                                     <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
                                     </tbody>

@@ -31,7 +31,7 @@
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/contacto/listado}">[[#{plantilla.contacto}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/metodos/listado}">[[#{plantilla.metodos}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/cita/listado}">[[#{plantilla.citas}]]</a></li>
-                           <!--<li class="nav-item px-2"><a class="nav-link" th:href="@{/registro/listado}">[[#{plantilla.registro}]]</a></li>-->
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/registro/listado}">[[#{plantilla.registro}]]</a></li>-->
                         </ul>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                                             <th>#</th>
                                             <th>[[#{registro.nombre}]]</th>
                                             <th>[[#{registro.apellido}]]</th>
-                                            <th>[[#{registro.numero}]]</th>
+                                            <th>[[#{registro.telefono}]]</th>
                                             <th>[[#{registro.correo}]]</th>
                                             <th>[[#{registro.activo}]]</th>
                                             <th></th>
@@ -68,7 +68,7 @@
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${registro.nombre}]]</td>
                                             <td>[[${registro.apellido}]]</td>
-                                            <td>[[${registro.numero}]]</td>
+                                            <td>[[${registro.telefono}]]</td>
                                             <td>[[${registro.correo}]]</td>
                                             <td th:text="${registro.activo} ? 'Activo' : 'Inactivo'" />
                                             <td>

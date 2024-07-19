@@ -29,4 +29,14 @@ public class RegistoController {
         return "/registro/listado";
         
     }
+    
+    @GetMapping("/listado")
+    public String mostrarListado(Model model) {
+        return "registro/listado";
+    }
+    
+    @PostMapping("/guardar")
+    public String guardarRegistro(Registro registro) {
+        return "redirect:/registro/listado";
+    }
 }    

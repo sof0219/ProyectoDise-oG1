@@ -14,12 +14,12 @@ public class Registro implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_Registro")
-    private Long idRegistro;
+    @Column(name = "id_cliente")
+    private Long idCliente;
     private String nombre;
     private String apellido;
-    private long numero;
+    private long telefono;
     private String correo;
-    private String contraseña;
+    private String password;
     private boolean activo;
 }

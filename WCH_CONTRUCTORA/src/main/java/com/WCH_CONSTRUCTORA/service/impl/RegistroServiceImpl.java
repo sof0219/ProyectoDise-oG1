@@ -34,7 +34,7 @@ public class RegistroServiceImpl implements RegistroService {
     @Override
     @Transactional(readOnly = true)
     public Registro getRegistro(Registro registro) {
-        return registroDao.findById(registro.getIdRegistro()).orElse(null);
+        return registroDao.findById(registro.getIdCliente()).orElse(null);
     }
 
     @Override
