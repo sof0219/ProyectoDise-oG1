@@ -1,5 +1,5 @@
 
-package com.WCH_CONTRUCTORA.domain;
+package com.WCH_CONSTRUCTORA.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
