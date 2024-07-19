@@ -7,19 +7,17 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "registro")
-public class Registro implements Serializable {
+@Table(name = "categorias")
+public class Categoria implements Serializable {
     
     private static final long serialVersionUID = 11;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_Registro")
-    private Long idRegistro;
+    @Column(name = "id_categoria")
+    private Long idCategoria;
     private String nombre;
-    private String apellido;
-    private long numero;
-    private String correo;
-    private String contraseña;
-    private boolean activo;
+    private String descripcion;
+    private String rutaImagen;
+    
 }

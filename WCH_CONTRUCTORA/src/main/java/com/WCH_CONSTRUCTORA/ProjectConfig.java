@@ -1,5 +1,5 @@
 
-package com.WCH_CONTRUCTORA;
+package com.WCH_CONSTRUCTORA;
 
 import java.util.Locale;
 import org.springframework.context.annotation.Bean;

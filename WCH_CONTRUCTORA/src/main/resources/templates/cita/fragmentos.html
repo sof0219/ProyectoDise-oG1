@@ -1,6 +1,216 @@
 <!DOCTYPE html>
-<!--Esta es la primera pagina html-->
-<!-- Son etiquetas extendias -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Prueba_01</title>
+        <meta charset="UTF-8"/> 
+    </head>
+    <body>
+        <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarRegistro">
+                            <i class="fas fa-plus"></i> [[#{registro.agregar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2 Fragmento para agregar registro, es la ventana modal -->
+        <section th:fragment="agregarRegistro">
+            <div id="agregarRegistro" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">[[#{registro.agregar}]]</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/registro/guardar}" th:object="${registro}"
+                              method="POST" class="was-validated" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="nombre">[[#{registro.nombre}]]</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="apellido">[[#{registro.apellido}]]</label>
+                                    <input type="text" class="form-control" name="apellido" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="numero">[[#{registro.numero}]]</label>
+                                    <input type="number" class="form-control" name="numero" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="correo">[[#{registro.correo}]]</label>
+                                    <input type="email" class="form-control" name="correo" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contraseña">[[#{registro.contraseña}]]</label>
+                                    <input type="password" class="form-control" name="contraseña" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="activo">[[#{registro.activo}]]</label>
+                                    <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="listadoRegistros" id="registros">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{registro.listado}]]</h4>
+                            </div>
+                            <div th:if="${registros != null and !registros.empty}">
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-dark">
+                                        <tr><th>#</th>
+                                            <th>[[#{registro.nombre}]]</th>
+                                            <th>[[#{registro.apellido}]]</th>
+                                            <th>[[#{registro.numero}]]</th>
+                                            <th>[[#{registro.correo}]]</th>
+                                            <th>[[#{registro.activo}]]</th>
+                                            <th></th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="registro, contador : ${registros}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${registro.nombre}]]</td>
+                                            <td>[[${registro.apellido}]]</td>
+                                            <td>[[${registro.numero}]]</td>
+                                            <td>[[${registro.correo}]]</td>
+                                            <td th:text="${registro.activo} ? 'Activo' : 'Inactivo'" />
+                                            <td><a th:href="@{/registro/eliminar/}+${registro.idRegistro}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
+                                                <a th:href="@{/registro/modificar/}+${registro.idRegistro}"
+                                                   class="btn btn-success">
+                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${registros == null or registros.empty}">
+                                <span>[[#{lista.vacia}]]</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center bg-warning text-white mb-3">
+                            <div class="card-body">
+                                <h3>[[#{registro.total}]]</h3>
+                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalRegistros}]]</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 Fragmento que se utiliza en la página modifca.html -->
+        <section th:fragment="editarRegistro">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="POST"
+                          th:action="@{/registro/guardar}" 
+                          th:object="${registro}"
+                          class="was-validated"                          
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="idRegistro" th:field="*{idRegistro}"/>
+                        <section th:replace="~{registro/fragmentos :: botonesEditar}"/>
+                        <div id=details>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>[[#{accion.actualizar}]]</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="nombre">[[#{registro.nombre}]]</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="nombre" th:field="*{nombre}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="apellido">[[#{registro.apellido}]]</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="apellido" th:field="*{apellido}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="numero">[[#{registro.numero}]]</label>
+                                                    <input type="number" class="form-control" 
+                                                           name="numero" th:field="*{numero}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="correo">[[#{registro.correo}]]</label>
+                                                    <input type="email" class="form-control" 
+                                                           name="correo" th:field="*{correo}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="contraseña">[[#{registro.contraseña}]]</label>
+                                                    <input type="password" class="form-control" 
+                                                           name="contraseña" th:field="*{contraseña}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="activo">[[#{registro.activo}]]</label>
+                                                    <input class="form-check-input" 
+                                                           type="checkbox" 
+                                                           name="activo" 
+                                                           id="activo"
+                                                           th:field="*{activo}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4 bg-light">
+                <div class="row">
+                    <div class="col-md-4 d-grid">
+                        <a th:href="@{/registro/listado}" class="btn btn-primary">
+
+
+
+
+Solamente veo la de registros, tambien agregó la de citas ???
+ChatGPT
+Aquí está el archivo completo con las secciones para "Registro" y "Cita" incluidas, respetando la estructura y agregando los fragmentos de "botonesEditar" al final:
+
+html
+Copiar código
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -18,17 +228,26 @@
                             type="button" 
                             class="btn btn-primary btn-block" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#agregarCategoria">
-                            <i class="fas fa-plus"></i> [[#{categoria.agregar}]]
+                            data-bs-target="#agregarRegistro">
+                            <i class="fas fa-plus"></i> [[#{registro.agregar}]]
+                        </button>
+                    </div>
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarCita">
+                            <i class="fas fa-plus"></i> [[#{cita.agregar}]]
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 2 Fragmento para agregar categoria, es la ventana modal -->
-        <section th:fragment="agregarCategoria">
-            <div id="agregarCategoria" 
+        <!-- 2 Fragmento para agregar registro, es la ventana modal -->
+        <section th:fragment="agregarRegistro">
+            <div id="agregarRegistro" 
                  class="modal fade" 
                  tabindex="-1" 
                  aria-labelledby="exampleModalLabel" 
@@ -36,36 +255,35 @@
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title">[[#{categoria.agregar}]]</h5>
+                            <h5 class="modal-title">[[#{registro.agregar}]]</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
-                        <form th:action="@{/categoria/guardar}" th:object="${categoria}"
+                        <form th:action="@{/registro/guardar}" th:object="${registro}"
                               method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="nombre">[[#{categoria.nombre}]]</label>
-                                    <input type="text" class="form-control" name="nombreArbol" required="true"/>
+                                    <label for="nombre">[[#{registro.nombre}]]</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="Tipo de flor">[[#{categoria.descripcion}]]</label>
-                                    <input type="text" class="form-control" name="tipoFlor" required="true"/>
+                                    <label for="apellido">[[#{registro.apellido}]]</label>
+                                    <input type="text" class="form-control" name="apellido" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="durezaMadera">[[#{categoria.durezaMadera}]]</label>
-                                    <input type="text" class="form-control" name="durezaMadera" required="true"/>
+                                    <label for="numero">[[#{registro.numero}]]</label>
+                                    <input type="number" class="form-control" name="numero" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="alturaArbol">[[#{categoria.alturaArbol}]]</label>
-                                    <input type="number" class="form-control" name="alturaArbol" required="true"/>
+                                    <label for="correo">[[#{registro.correo}]]</label>
+                                    <input type="email" class="form-control" name="correo" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="activo">[[#{categoria.activo}]]</label>
+                                    <label for="contraseña">[[#{registro.contraseña}]]</label>
+                                    <input type="password" class="form-control" name="contraseña" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="activo">[[#{registro.activo}]]</label>
                                     <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="imagen">[[#{categoria.rutaImagen}]]</label>
-                                    <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
-                                    <img id="blah" src="#" alt="your image" height="200"/>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -77,44 +295,94 @@
             </div>
         </section>
 
-        
-        <section th:fragment="listadoCategorias" id="categorias">
+        <!-- 2 Fragmento para agregar cita, es la ventana modal -->
+        <section th:fragment="agregarCita">
+            <div id="agregarCita" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">[[#{cita.agregar}]]</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/cita/guardar}" th:object="${cita}"
+                              method="POST" class="was-validated" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="nombre">[[#{cita.nombre}]]</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="apellido">[[#{cita.apellido}]]</label>
+                                    <input type="text" class="form-control" name="apellido" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="numero">[[#{cita.numero}]]</label>
+                                    <input type="number" class="form-control" name="numero" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="correo">[[#{cita.correo}]]</label>
+                                    <input type="email" class="form-control" name="correo" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="rutaImagen">[[#{cita.rutaImagen}]]</label>
+                                    <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
+                                    <img id="blah" src="#" alt="your image" height="200"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="activo">[[#{cita.activo}]]</label>
+                                    <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="listadoRegistros" id="registros">
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header">
-                                <h4>[[#{categoria.listado}]]</h4>
+                                <h4>[[#{registro.listado}]]</h4>
                             </div>
-                            <div th:if="${categorias != null and !categorias.empty}">
+                            <div th:if="${registros != null and !registros.empty}">
                                 <table class="table table-striped table-hover">
                                     <thead class="table-dark">
                                         <tr><th>#</th>
-                                            <th>[[#{categoria.nombre}]]</th>
-                                            <th>[[#{categoria.descripcion}]]</th>
-                                            <th>[[#{categoria.durezaMadera}]]</th>
-                                            <th>[[#{categoria.alturaArbol}]]</th>
-                                            <th>[[#{categoria.activo}]]</th>
+                                            <th>[[#{registro.nombre}]]</th>
+                                            <th>[[#{registro.apellido}]]</th>
+                                            <th>[[#{registro.numero}]]</th>
+                                            <th>[[#{registro.correo}]]</th>
+                                            <th>[[#{registro.activo}]]</th>
                                             <th></th></tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="categoria, contador : ${categorias}">
+                                        <tr th:each="registro, contador : ${registros}">
                                             <td>[[${contador.count}]]</td>
-                                            <td>[[${categoria.nombreArbol}]]</td>
-                                            <td>[[${categoria.tipoFlor}]]</td>
-                                            <td>[[${categoria.durezaMadera}]]</td>
-                                            <td>[[${categoria.alturaArbol}]]</td>
-                                            <td th:text="${categoria.activo} ? 'Activa' : 'Inactiva'" />
-                                            <td><a th:href="@{/categoria/eliminar/}+${categoria.idArbol}"
+                                            <td>[[${registro.nombre}]]</td>
+                                            <td>[[${registro.apellido}]]</td>
+                                            <td>[[${registro.numero}]]</td>
+                                            <td>[[${registro.correo}]]</td>
+                                            <td th:text="${registro.activo} ? 'Activo' : 'Inactivo'" />
+                                            <td><a th:href="@{/registro/eliminar/}+${registro.idRegistro}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
-                                                <a th:href="@{/categoria/modificar/}+${categoria.idArbol}"
+                                                <a th:href="@{/registro/modificar/}+${registro.idRegistro}"
                                                    class="btn btn-success">
                                                     <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="text-center p-2" th:if="${categorias == null or categorias.empty}">
+                            <div class="text-center p-2" th:if="${registros == null or registros.empty}">
                                 <span>[[#{lista.vacia}]]</span>
                             </div>
                         </div>
@@ -122,8 +390,8 @@
                     <div class="col-md-3">
                         <div class="card text-center bg-warning text-white mb-3">
                             <div class="card-body">
-                                <h3>[[#{categoria.total}]]</h3>
-                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalCategorias}]]</h4>
+                                <h3>[[#{registro.total}]]</h3>
+                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalRegistros}]]</h4>
                             </div>
                         </div>
                     </div>
@@ -131,75 +399,256 @@
             </div>
         </section>
 
-        <!-- 4 Fragmento que se utiliza en la página modifca.html -->
-        <section th:fragment="editarCategoria">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <form method="POST"
-                          th:action="@{/categoria/guardar}" 
-                          th:object="${categoria}"
-                          class="was-validated"                          
-                          enctype="multipart/form-data">
-                        <input type="hidden" name="idArbol" th:field="*{idArbol}"/>
-                        <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
-                        <section th:replace="~{categoria/fragmentos :: botonesEditar}"/>
-                        <div id=details>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h4>[[#{accion.actualizar}]]</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="mb-3">
-                                                    <label for="nombreArbol">[[#{categoria.nombre}]]</label>
-                                                    <input type="text" class="form-control" 
-                                                           name="nombreArbol" th:field="*{nombreArbol}"
-                                                           required="true">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="descripcion">[[#{categoria.descripcion}]]</label>
-                                                    <input type="text" class="form-control" 
-                                                           name="tipoFlor" th:field="*{tipoFlor}"
-                                                           required="true">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="durezaMadera">[[#{categoria.durezaMadera}]]</label>
-                                                    <input type="text" class="form-control" 
-                                                           name="durezaMadera" th:field="*{durezaMadera}"
-                                                           required="true">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="alturaArbol">[[#{categoria.alturaArbol}]]</label>
-                                                    <input type="number" class="form-control" 
-                                                           name="alturaArbol" th:field="*{alturaArbol}"
-                                                           required="true">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="activo">[[#{categoria.activo}]]</label>
-                                                    <input class="form-check-input" 
-                                                           type="checkbox" 
-                                                           name="activo" 
-                                                           id="activo"
-                                                           th:field="*{activo}">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="imagen">[[#{categoria.rutaImagen}]]</label>
-                                                    <input class="form-control" type="file" name="imagenFile"
-                                                           onchange="readURL(this);" />
-                                                    <img id="blah" th:src="@{${categoria.rutaImagen}}" alt="your image" height="200"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </form>
+        <section th:fragment="listadoCitas" id="citas">
+            <div class="container">
+               
+Necesito que lo termines!
+ChatGPT
+Claro, aquí tienes el archivo completo con las secciones para "Registro" y "Cita" incluyendo los fragmentos de "botonesEditar" al final:
+
+html
+Copiar código
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Prueba_01</title>
+        <meta charset="UTF-8"/> 
+    </head>
+    <body>
+        <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarRegistro">
+                            <i class="fas fa-plus"></i> [[#{registro.agregar}]]
+                        </button>
+                    </div>
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarCita">
+                            <i class="fas fa-plus"></i> [[#{cita.agregar}]]
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- 2 Fragmento para agregar registro, es la ventana modal -->
+        <section th:fragment="agregarRegistro">
+            <div id="agregarRegistro" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">[[#{registro.agregar}]]</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/registro/guardar}" th:object="${registro}"
+                              method="POST" class="was-validated" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="nombre">[[#{registro.nombre}]]</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="apellido">[[#{registro.apellido}]]</label>
+                                    <input type="text" class="form-control" name="apellido" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="numero">[[#{registro.numero}]]</label>
+                                    <input type="number" class="form-control" name="numero" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="correo">[[#{registro.correo}]]</label>
+                                    <input type="email" class="form-control" name="correo" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contraseña">[[#{registro.contraseña}]]</label>
+                                    <input type="password" class="form-control" name="contraseña" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="activo">[[#{registro.activo}]]</label>
+                                    <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2 Fragmento para agregar cita, es la ventana modal -->
+        <section th:fragment="agregarCita">
+            <div id="agregarCita" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">[[#{cita.agregar}]]</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/cita/guardar}" th:object="${cita}"
+                              method="POST" class="was-validated" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="nombre">[[#{cita.nombre}]]</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="apellido">[[#{cita.apellido}]]</label>
+                                    <input type="text" class="form-control" name="apellido" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="numero">[[#{cita.numero}]]</label>
+                                    <input type="number" class="form-control" name="numero" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="correo">[[#{cita.correo}]]</label>
+                                    <input type="email" class="form-control" name="correo" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="rutaImagen">[[#{cita.rutaImagen}]]</label>
+                                    <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
+                                    <img id="blah" src="#" alt="your image" height="200"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="activo">[[#{cita.activo}]]</label>
+                                    <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="listadoRegistros" id="registros">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{registro.listado}]]</h4>
+                            </div>
+                            <div th:if="${registros != null and !registros.empty}">
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-dark">
+                                        <tr><th>#</th>
+                                            <th>[[#{registro.nombre}]]</th>
+                                            <th>[[#{registro.apellido}]]</th>
+                                            <th>[[#{registro.numero}]]</th>
+                                            <th>[[#{registro.correo}]]</th>
+                                            <th>[[#{registro.activo}]]</th>
+                                            <th></th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="registro, contador : ${registros}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${registro.nombre}]]</td>
+                                            <td>[[${registro.apellido}]]</td>
+                                            <td>[[${registro.numero}]]</td>
+                                            <td>[[${registro.correo}]]</td>
+                                            <td th:text="${registro.activo} ? 'Activo' : 'Inactivo'" />
+                                            <td><a th:href="@{/registro/eliminar/}+${registro.idRegistro}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
+                                                <a th:href="@{/registro/modificar/}+${registro.idRegistro}"
+                                                   class="btn btn-success">
+                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${registros == null or registros.empty}">
+                                <span>[[#{lista.vacia}]]</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center bg-warning text-white mb-3">
+                            <div class="card-body">
+                                <h3>[[#{registro.total}]]</h3>
+                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalRegistros}]]</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="listadoCitas" id="citas">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{cita.listado}]]</h4>
+                            </div>
+                            <div th:if="${citas != null and !citas.empty}">
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-dark">
+                                        <tr><th>#</th>
+                                            <th>[[#{cita.nombre}]]</th>
+                                            <th>[[#{cita.apellido}]]</th>
+                                            <th>[[#{cita.numero}]]</th>
+                                            <th>[[#{cita.correo}]]</th>
+                                            <th>[[#{cita.activo}]]</th>
+                                            <th></th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="cita, contador : ${citas}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${cita.nombre}]]</td>
+                                            <td>[[${cita.apellido}]]</td>
+                                            <td>[[${cita.numero}]]</td>
+                                            <td>[[${cita.correo}]]</td>
+                                            <td th:text="${cita.activo} ? 'Activo' : 'Inactivo'" />
+                                            <td><a th:href="@{/cita/eliminar/}+${cita.idCita}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
+                                                <a th:href="@{/cita/modificar/}+${cita.idCita}"
+                                                   class="btn btn-success">
+                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${citas == null or citas.empty}">
+                                <span>[[#{lista.vacia}]]</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-center bg-warning text-white mb-3">
+                            <div class="card-body">
+                                <h3>[[#{cita.total}]]</h3>
+                                <h4 class="fs-2"><i class="fas fa-calendar-day"></i> [[${totalCitas}]]</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
         <section th:fragment="botonesEditar">
