@@ -4,7 +4,7 @@
  */
 package com.WCH_CONSTRUCTORA.services;
 
-import com.WCH_CONTRUCTORA.domain.Foto;
+import com.WCH_CONSTRUCTORA.domain.Foto;
 import java.util.List;
 
 /**

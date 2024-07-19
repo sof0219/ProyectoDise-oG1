@@ -11,18 +11,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.WCH_CONSTRUCTORA.services.FotoService;
 import com.WCH_CONSTRUCTORA.dao.FotoDao;
-import com.WCH_CONTRUCTORA.domain.Foto;
+import com.WCH_CONSTRUCTORA.domain.Foto;
 
 @Service
 public class FotoServiceImpl implements FotoService {
     
     @Autowired
-    private FotoDao fotoDao;
+    private FotoDao FotoDao;
 
     @Override
     @Transactional(readOnly = true)
     public List<Foto> getFoto() {
-        var lista = fotoDao.findAll();
+        var lista = FotoDao.findAll();
         
 
         return lista;
@@ -31,7 +31,7 @@ public class FotoServiceImpl implements FotoService {
     @Override
     @Transactional(readOnly = true)
     public Foto getFoto(Foto foto) {
-        return fotoDao.findById(foto.getIdFoto()).orElse(null);
+        return FotoDao.findById(foto.getIdFoto()).orElse(null);
     }
     
 }
