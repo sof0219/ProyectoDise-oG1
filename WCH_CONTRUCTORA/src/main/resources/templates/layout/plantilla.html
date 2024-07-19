@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:fragment="head">
-        <title>Prueba_01</title>
+        <title>Constructora WCH</title>
         <meta charset="UTF-8"/> 
         <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
         <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
@@ -17,26 +17,25 @@
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
                 <div class="container">
                     <a th:href="@{/}" class="navbar-brand">[[#{aplicacion.titulo}]]</a>
+                    <a class="navbar-brand" href="#">
+                        <img src="/img/logo_wch.png" alt="Logo" width="30" height="24"/>
+                    </a>
                     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <ul class="navbar-nav">
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/Publicacion/listado}">[[#{plantilla.publicacion}]]</a></li>
-                          
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/informacion/listado}">[[#{plantilla.informacion}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/portafolio/listado}">[[#{plantilla.portafolio}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/servicios/listado}">[[#{plantilla.servicios}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/contacto/listado}">[[#{plantilla.contacto}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/metodos/listado}">[[#{plantilla.metodos}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/cita/listado}">[[#{plantilla.citas}]]</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
-            <section id="main-header" class="py-2 bg-primary text-white">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h1><i class="fas fa-cog"></i> [[#{plantilla.suTienda}]]</h1>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            
         </header>
         
         <div class="container">
