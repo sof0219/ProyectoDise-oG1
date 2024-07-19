@@ -30,7 +30,6 @@ public class RegistoController {
         
     }
     
-    @GetMapping("/listado")
     public String mostrarListado(Model model) {
         return "registro/listado";
     }
