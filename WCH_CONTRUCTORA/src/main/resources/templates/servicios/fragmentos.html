@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--Esta es la primera pagina html-->
+<!-- Son etiquetas extendias -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Constructora WCH</title>
+        <meta charset="UTF-8"/> 
+    </head>
+    <body>
+
+
+        <section th:fragment="tabsCategorias" class="bg-light">
+            <div class="row p-4">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item" th:each="c : ${categorias}">
+                        <a class="nav-link" 
+                           th:href="@{/servicios/listado/} + ${c.idCategoria}">[[${c.nombre}]]</a>
+                    </li>
+                </ul> 
+
+            </div>
+        </section>
+   </body>
+</html>
