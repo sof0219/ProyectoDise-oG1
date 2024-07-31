@@ -95,9 +95,9 @@
                                         <tr th:each="citas, contador : ${citass}">
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${citas.nombre}]]</td>
-                                            <th>[[#{citas.apellido}]]</th>
-                                            <th>[[#{citas.telefono}]]</th>
-                                            <th>[[#{citas.correo}]]</th>
+                                            <th>[[${citas.apellido}]]</th>
+                                            <th>[[${citas.telefono}]]</th>
+                                            <th>[[${citas.correo}]]</th>
                                            
                                             <td th:text="${citas.activo} ? 'Activa' : 'Inactiva'" />
                                             <td><a th:href="@{/citas/eliminar/}+${citas.idCita}"
