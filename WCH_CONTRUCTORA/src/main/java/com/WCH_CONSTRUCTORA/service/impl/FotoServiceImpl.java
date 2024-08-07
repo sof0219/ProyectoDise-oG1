@@ -34,4 +34,10 @@ public class FotoServiceImpl implements FotoService {
         return FotoDao.findById(foto.getIdFoto()).orElse(null);
     }
     
+    @Override
+    @Transactional(readOnly = true)
+    public List<Foto> getFotosPorCategoria(long idCategoria){
+        return FotoDao.findByIdCategoria(idCategoria);
+    }
+    
 }

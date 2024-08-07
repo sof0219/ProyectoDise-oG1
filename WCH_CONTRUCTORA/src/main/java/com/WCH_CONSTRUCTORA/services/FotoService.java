@@ -26,7 +26,7 @@ public interface FotoService {
     //Actualiza un foto en la tabla foto existe
     //Crea un foto en la tabla foto si idFoto no tiene valor
     
-
+    public List<Foto> getFotosPorCategoria(long idCategoria);
     
 } 
 

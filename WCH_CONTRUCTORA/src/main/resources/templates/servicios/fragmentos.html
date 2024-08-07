@@ -19,7 +19,18 @@
                            th:href="@{/servicios/listado/} + ${c.idCategoria}">[[${c.nombre}]]</a>
                     </li>
                 </ul> 
-
+            </div>
+        </section>
+        
+         <section th:fragment="tarjetas" class="bg-light">
+            <div class="row row-cols-4">
+                <div class="card" th:each="p : ${categoria}">
+                    <figure>
+                        <<img th:src="${p.rutaImagen}" 
+                              height="200"
+                              alt="alt"/>
+                    </figure>
+                </div>
             </div>
         </section>
    </body>
