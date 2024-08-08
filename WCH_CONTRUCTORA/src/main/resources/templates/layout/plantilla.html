@@ -32,7 +32,36 @@
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/metodos/listado}">[[#{plantilla.metodos}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/citas/listado}">[[#{plantilla.citas}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/registro/listado}">[[#{plantilla.registro}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/login}">[[#{plantilla.registroUser}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
                         </ul>
+                        
+                        <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
+                            <li class="nav-item px-2">
+                                <a class="nav-menu-link nav-link"
+                                   th:href="@{/login}">
+                                    <i class="fas fa-right-to-bracket"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <ul class="navbar-nav" sec:authorize="isAuthenticated()">
+                            <li class="nav-item my-auto text-white">
+                                <img src="@{${session.imagenUsuario}}" 
+                                     class="rounded-circle"
+                                     height="40" 
+                                     alt=" "/>
+                                <span sec:authentication='name'>Jhon</span>
+                            </li>
+                            <li class="nav-item my-auto text-white">
+                                 <form method= "post"
+                                  th:action='@{/logout}'>
+                                <button class='btn btn-dark'>
+                                   <i class="fas fa-right-from-bracket"></i>
+                                </button>
+                            </form>
+                        </ul>
+                        
                     </div>
                 </div>
             </nav>
