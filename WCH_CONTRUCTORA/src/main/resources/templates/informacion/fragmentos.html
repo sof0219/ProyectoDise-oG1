@@ -8,10 +8,20 @@
         <title>Constructora WCH</title>
         <meta charset="UTF-8"/> 
     </head>
+    
+    
+    
     <body>
+        
+        <section th:fragment="bannerInformacion" class="bg-light">
+            <div style="display: flex; flex-direction: column; align-items: center; padding: 5rem">
+                <h1>Sobre nuestra trayectoria</h1>
+            </div>
+
+        </section>
+        
         <section th:fragment="Informacion" class="bg-light">
-            <h2 class="text-center mt-1">Sobre nuestra trayectoria</h2>
-            <div class="row p-4">
+            <div class="row p-4" style="justify-content: center">
                 <!-- Tarjeta 1 -->
                 <div class="card col-md-4 p-2" style="width: 30rem; gap: 1rem; background-color: #e0f3f9">
                     <img src="/img/Imagen 1.png" height="270" width="28" class="card-img-top" alt="10 años construyendo sueños">
