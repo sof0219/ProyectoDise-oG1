@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--Esta es la primera pagina html-->
+<!-- Son etiquetas extendias -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Constructora WCH</title>
+        <meta charset="UTF-8"/> 
+    </head>
+    <body>
+
+        <section th:fragment="bannerContacto" class="bg-light">
+            <div style="display: flex; flex-direction: column; align-items: center; padding: 5rem">
+                <h1>Empieza a renovar: contáctanos</h1>
+                <h3>Nuestros asesores estarán encantados de atenderte</h3>
+            </div>
+        </section>
+
+        <section th:fragment="textoContacto" class="bg-light">
+            <div style="display: flex; flex-direction: column; align-items: center; padding: 5rem">
+                <h3>Puedes encontrarnos en nuestras redes sociales</h3>
+            </div>
+        </section>
+
+    </body>
+</html>
