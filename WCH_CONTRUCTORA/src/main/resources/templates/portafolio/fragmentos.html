@@ -10,11 +10,23 @@
     </head>
     <body>
 
+        <section th:fragment="bannerPortafolio" class="bg-light">
+            <div style="display: flex; flex-direction: column; align-items: center; padding: 5rem">
+                <h1>Conoce un poco de nuestro trabajo</h1>
+                <h3>Nos enorgullece mostrarte gran parte de nuestro trabajo</h3>
+            </div>
+
+        </section>
+
+
         <section th:fragment="tabsCategorias" class="bg-light">
-            <div class="row p-4">
-                <ul class="nav nav-tabs">
+            <div class="row p-4 px-5">
+                <ul class="nav nav-pills">
                     <li class="nav-item" th:each="c : ${categorias}">
-                        <a class="nav-link" 
+                        <a class="nav-link"
+                           data-toggle="pill"
+                           th:classappend="${c.idCategoria} == ${idCategoriaSeleccionada} ? ' active' : ''"
+                           th:style="${c.idCategoria} == ${idCategoriaSeleccionada} ? 'background: #fec400; color: #000; font-weight: 700;' : 'color: #000; font-weight: 700;'"
                            th:href="@{/portafolio/listado/} + ${c.idCategoria}">[[${c.nombre}]]</a>
                     </li>
                 </ul> 
@@ -22,18 +34,24 @@
         </section>
 
         <section th:fragment="tarjetas" class="bg-light">
-            <div class="row row-cols-4">
-                <div class="card" th:each="f : ${fotos}">
-                    <figure>
-                        <img th:src="${f.rutaImagen}" 
-                              height="200"
-                              alt="alt"/>
-                    </figure>
+            <div style="display: flex; justify-content: center">
+                <div class="row" style="width: 80%; gap: 5rem">
+                    <div class="card" th:each="f : ${fotos}" style="width: 18rem; overflow: hidden; height: 18rem">
+                        <img 
+                            th:src="${f.rutaImagen}" 
+                            alt="alt"
+                            style="
+                            object-fit: cover;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%
+                            "
+                            />
+                    </div>
                 </div>
-
             </div>
         </section>
-        
-
-         </body>
+    </body>
 </html>

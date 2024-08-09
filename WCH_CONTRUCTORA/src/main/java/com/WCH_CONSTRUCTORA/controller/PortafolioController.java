@@ -32,6 +32,7 @@ public class PortafolioController {
         var categorias = categoriaService.getCategorias(); 
 
         model.addAttribute("categorias",categorias);
+        model.addAttribute("idCategoriaSeleccionada",categoria.getIdCategoria());
         
         return "/portafolio/listado";
     }
