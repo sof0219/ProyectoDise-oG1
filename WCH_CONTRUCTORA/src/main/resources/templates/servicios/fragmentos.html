@@ -10,6 +10,14 @@
     </head>
     <body>
 
+        <section th:fragment="bannerServicios" class="bg-light">
+            <div style="display: flex; flex-direction: column; align-items: center; padding: 5rem">
+                <h1>Conoce un poco más de nuestros servicios</h1>
+                <h3>Nuestro portafolio es conformado por clientes satisfechos y calidad</h3>
+            </div>
+
+        </section>
+
 
         <section th:fragment="tabsCategorias" class="bg-light">
             <div class="row p-4">
@@ -21,17 +29,39 @@
                 </ul> 
             </div>
         </section>
-        
-         <section th:fragment="tarjetas" class="bg-light">
-            <div class="row row-cols-4">
-                <div class="card" th:each="p : ${categoria}">
-                    <figure>
-                        <img th:src="${p.rutaImagen}" 
-                              height="200"
-                              alt="alt"/>
-                    </figure>
+
+        <section th:fragment="tarjetas" class="bg-light">
+            <div class="row row-cols-1 g-3" style="justify-content: center;">
+                <div class="card mb-3" th:each="c : ${categorias}" 
+                     style="max-width: 966px; 
+                     height: 240px; 
+                     overflow: hidden; 
+                     padding-left: 0px;
+                     background: #e0f3f9">
+                    <div class="row g-0">
+                        <div class="col-md-4 h-100">
+                            <img th:src="${c.rutaImagen}" 
+                                 alt="alt"
+                                 class="img-fluid rounded-start"
+                                 />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 25px">[[${c.nombre}]]</h5>
+                                <p class="card-text" style="font-size: 20px">[[${c.descripcion}]]</p>
+                                <div class="d-flex justify-content-end">
+                                <a href="#" class="btn btn-primary" style="
+                                   justify-content: end; 
+                                   background: #005d89; 
+                                   font-color: #fcfbfb;
+                                   ">Cotizar</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-   </body>
+         </body>
 </html>
