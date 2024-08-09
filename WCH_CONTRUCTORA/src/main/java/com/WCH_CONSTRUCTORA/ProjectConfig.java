@@ -73,7 +73,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                 .authorizeHttpRequests((request) -> request
                 .requestMatchers("/","/index","/errores/**",
                         "/portafolio/**","/citas/**","/informacion/**",
-                        "/registroUser/**","/js/**","/webjars/**", "/portafolio/**", "/servicios/**")
+                        "/registroUser/**","/js/**","/webjars/**", "/portafolio/**", "/servicios/**","/metodos/**")
                         .permitAll()
                 .requestMatchers(
                         "/registro/nuevo","/registro/guardar",
@@ -81,7 +81,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/citas/nuevo","/citas/guardar",
                         "citas/modificar/**","/citas/eliminar/**",
                         "/usuario/nuevo","/usuario/guardar",
-                        "/usuario/modificar/**","/usuario/eliminar/**", "/servicios/**","/portafolio/**",
+                        "/usuario/modificar/**","/usuario/eliminar/**", "/servicios/**","/portafolio/**","/metodos/**",
                         "/reportes/**"
                 ).hasRole("ADMIN")
                 .requestMatchers(
@@ -89,7 +89,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/citas/listado",
                         "/usuario/listado"
                 ).hasAnyRole("ADMIN", "VENDEDOR")
-                .requestMatchers("/informacion/**", "/portafolio/**", "/servicios/**")
+                .requestMatchers("/informacion/**", "/portafolio/**", "/servicios/**","/metodos**")
                 .hasRole("USER")
                 )
                 .formLogin((form) -> form

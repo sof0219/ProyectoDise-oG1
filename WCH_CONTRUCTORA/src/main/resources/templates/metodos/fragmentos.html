@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Constructora WCH</title>
+        <meta charset="UTF-8"/> 
+    </head>
+    <body>
+
+        <section th:fragment="Metodos" class="bg-white">
+            <h2 class="text-center mt-5">Cómo contratar nuestros servicios</h2>
+            <h3 class="text-center">Conoce nuestras opciones de pago</h3>
+            <div class="d-flex justify-content-center mt-5">
+                <!<!-- Tarjeta de Transferencia -->
+                <div class="d-flex justify-content-center mt-5">
+                <div class="text-center mt-5, card col-md6, p-5" style="width: 20rem; background-color: #e0f3f9"  justify-content: center”>
+                    <img src="/img/transferencia.png" class="card-img-top" alt="Transferencia">
+                        <div class="card-body">
+                            <h5 class="card-title">Transferencia</h5>
+                            <p class="card-text">Puedes realizar tu depósito o transferencia a la cuenta del Banco XXXX<br>
+                                    <strong>Colones:</strong> 001-01-023-456789-0<br>
+                                        <strong>IBAN:</strong> CR01020304050607080910</p>   
+                        </div>
+                </div>
+                
+                <div class="text-center mt-5, card col-md6, p-5 " style="width: 20rem; background-color: #e0f3f9">
+                    <img src="/img/dinero.png" class="card-img-top" alt="Efectivo">
+                        <div class="card-body">
+                            <h5 class="card-title">Efectivo</h5>
+                            <p class="card-text">Pago en efectivo directamente al momento de realizar la reunion con nuestro equipo de trabajo</p>   
+                        </div>
+                </div>
+                
+                <div class="text-center mt-5, card col-md6 , p-5" style="width: 20rem; background-color: #e0f3f9">
+                    <img src="/img/tarjeta-bancaria.png" class="card-img-top" alt="Credito">
+                        <div class="card-body">
+                            <h5 class="card-title">Credito</h5>
+                            <p class="card-text">Pagos a créditos muy flexibles, por medio de Tasa Cero o tarjetas del Bac Credomatic</p>   
+                        </div>
+                </div>
+                </div>
+        </section>
+    </body>
+
+</html>
