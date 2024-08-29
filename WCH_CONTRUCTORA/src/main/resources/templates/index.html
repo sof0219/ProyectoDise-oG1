@@ -2,14 +2,93 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http//www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}"
-        <title>Constructora WCH</title>
+          <title>Constructora WCH</title>
         <meta charset="UTF-8"/>  
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
-        <h4>Tu hogar, nuestra prioridad</h4>
-        <h4>Construyendo mas que casas, construyendo hogares</h4>
+
+
+        <section style="background: #e0f3f9">
+            <div style="display: flex; flex-direction: column; align-items: center; padding-top: 3rem">
+                <h6 class="p-3 rounded-5" style="background-color: #01a0e1; color: white;
+                    text-align: center; ">[[#{index.boton}]]</h6>
+            </div>
+
+            <div style="display: flex; flex-direction: column; align-items: center; padding-top: 1rem ;
+                 padding-bottom: 5rem">
+                <h1 style="font-size: 48px"><b>[[#{index.titulo1}]]</b></h1>
+                <h1 style="font-size: 48px"><b>[[#{index.titulo2}]]</b></h1>
+                <h6 class="pt-4" style="font-size: 18px">[[#{index.descripcion}]]</h6>
+            </div>
+        </section>
+        
+        <section class="bg-light pb-5">
+            <h5 style="padding-left: 10rem; padding-top: 3rem; padding-bottom: 1rem "><b>[[#{index.seccion}]]</b></h5>
+            <div style="display: flex; justify-content: center">
+                <div class="row" style="width: 80%; gap: 5rem">
+                    <div class="card" style="width: 18rem; overflow: hidden; height: 18rem">
+                        <img 
+                            src="https://firebasestorage.googleapis.com/v0/b/wch-constructora.appspot.com/o/Fotografias%2FOutdoor%2Foutdoor1.jpg?alt=media&token=3283f6c2-1b9e-4daa-965a-676beeaefefe" 
+                            alt="alt"
+                            style="
+                            object-fit: cover;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%
+                            "
+                            />
+                    </div>
+                    <div class="card" style="width: 18rem; overflow: hidden; height: 18rem">
+                        <img 
+                            src="https://firebasestorage.googleapis.com/v0/b/wch-constructora.appspot.com/o/Fotografias%2FOutdoor%2Foutdoor3.jpg?alt=media&token=3171f38f-ae46-4c40-9574-dac6aaf68f31" 
+                            alt="alt"
+                            style="
+                            object-fit: cover;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%
+                            "
+                            />
+                    </div>
+                    <div class="card" style="width: 18rem; overflow: hidden; height: 18rem">
+                        <img 
+                            src="https://firebasestorage.googleapis.com/v0/b/wch-constructora.appspot.com/o/Fotografias%2FOutdoor%2Foutdoor5.jpg?alt=media&token=9cff04f4-0573-4624-bba3-5bf8558a926b" 
+                            alt="alt"
+                            style="
+                            object-fit: cover;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%
+                            "
+                            />
+                    </div>
+                    <div class="card" style="width: 18rem; overflow: hidden; height: 18rem">
+                        <img 
+                            src="https://firebasestorage.googleapis.com/v0/b/wch-constructora.appspot.com/o/Fotografias%2FIndoor%2Findoor4.jpg?alt=media&token=d075fc66-b5ce-4b34-b6e1-4c5312cdfec3" 
+                            alt="alt"
+                            style="
+                            object-fit: cover;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%
+                            "
+                            />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         <footer th:replace="~{layout/plantilla :: footer}"/> 
-       
-    </body>
+
+         </body>
 </html>

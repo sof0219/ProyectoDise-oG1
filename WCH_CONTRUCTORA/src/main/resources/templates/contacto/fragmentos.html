@@ -11,15 +11,40 @@
     <body>
 
         <section th:fragment="bannerContacto" class="bg-light">
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 5rem">
-                <h1>Empieza a renovar: contáctanos</h1>
-                <h3>Nuestros asesores estarán encantados de atenderte</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; padding-top: 3rem; padding-bottom: 2rem">
+                <h2 style="font-size: 36px"> <b>Empieza a renovar: contáctanos</b></h2>
+                <h4 style="font-size: 20px">Nuestros asesores estarán encantados de atenderte</h4>
             </div>
         </section>
 
         <section th:fragment="textoContacto" class="bg-light">
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 5rem">
-                <h3>Puedes encontrarnos en nuestras redes sociales</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; padding: 1rem">
+                <figure class="figure" >
+                    <img src="https://firebasestorage.googleapis.com/v0/b/wch-constructora.appspot.com/o/Imágenes%2FfotoFacebook.jpg?alt=media&token=bc61b4fb-1967-4c9d-b311-e9c1e94cfcba"
+                         class="figure-img img-fluid rounded " style="width: 350px">
+                </figure>
+            </div>
+            <div class="row row-cols-1 g-3 pb-5" style="justify-content: center;">
+                <div class="card" style=" width: 25rem; justify-content: center;">
+                    <div class="card-body">
+                        <h5 class="card-title">Constructora WCH</h5>
+                        <p class="card-text">
+                            <i class="fa-solid fa-phone"></i> +506 88888888</p>
+                        <p class="card-text">
+                            <i class="fa-solid fa-envelope"></i> constructorawch@gmail.com</p>
+                        <div class="botones" style="display: inline-block; justify-content: center;">
+                            <a href="https://www.facebook.com/profile.php?id=100072195340579" 
+                               class="btn btn-primary btn-lg" style="background-color: #2f55a4"
+                               role="button">
+                                <i class="fa-brands fa-facebook"></i> Facebook</a>
+                            <a href="https://api.whatsapp.com/send?phone=%2B50689773720&context=ARDi_EFyKoPcTX_2HQ21HoMwESNvgo4xI0Pt9Rb3mMXKxwmf9saIymFUfDnpJXLmjUY9GLLJ07FoOwKk6PYp2oNG3BAPTolMvPBwBDN_KRsHfO_wW8Z-JqVG6gyNGZBgpIe3xm4o59d2Pb6A-GQY6R21cQ&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwY2xjawEjLmFleHRuA2FlbQIxMAABHX8IU1gOHrVNFKBxrnsMl9VO3O2DOUiVDTav2Wsbdoso5e8wqoJQFwVL-A_aem_OJL-Br7gO248_-Fa2WKeZw"
+                               class="btn btn-primary btn-lg" style="background-color: #25d366" 
+                               role="button">
+                                <i class="fa-brands fa-whatsapp"></i>Whatsapp</a>
+                        </div>
+                    </div>
+                    <img class="card-img-bottom" src="/img/fotoFacebook.jpg" alt=""/>
+                </div>
             </div>
         </section>
 

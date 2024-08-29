@@ -8,48 +8,50 @@
         <title>Constructora WCH</title>
         <meta charset="UTF-8"/> 
     </head>
-    
-    
-    
+
+
+
     <body>
-        
-        <section th:fragment="bannerInformacion" class="bg-light">
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 5rem">
-                <h1>Sobre nuestra trayectoria</h1>
+        <section th:fragment="Informacion" class="bg-light">
+            <div style="padding-top: 3rem; padding-bottom: 1rem; display: flex; flex-direction: column; align-items: center">
+                <h1 style="font-size: 36px"><b>Sobre nuestra trayectoria</b></h1>
             </div>
 
-        </section>
-        
-        <section th:fragment="Informacion" class="bg-light">
             <div class="row p-4" style="justify-content: center">
-                <!-- Tarjeta 1 -->
                 <div class="card col-md-4 p-2" style="width: 30rem; gap: 1rem; background-color: #e0f3f9">
-                    <img src="/img/Imagen 1.png" height="270" width="28" class="card-img-top" alt="10 años construyendo sueños">
-                        
+                    <div style="max-height: 270px; overflow: hidden">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/wch-constructora.appspot.com/o/Fotografias%2FOutdoor%2Foutdoor1.jpg?alt=media&token=3283f6c2-1b9e-4daa-965a-676beeaefefe" 
+                            style="height: 100%; width: 100%; object-fit: cover"  alt="10 años construyendo sueños"/>
+                    </div>
+
                     <div class="card-body">
-                        <h5 class="card-title" style="color: #005d89";>10 años construyendo sueños</h5>
+                        <h5 class="card-title" style="color: #005d89";><b>10 años construyendo sueños</b></h5>
                         <p class="card-text">Somos una constructora con más de 10 años de experiencia en la construción de inmuebles. 
                             Fundada por Walter Chávez, quién además de ser un estudiante de ingeniería civil, 
                             tiene un amplio conocimiento sobre la elaboración de infraestructuras.</p>
-                        <a class="btn btn-primary, bg-warning" >Contáctanos</a>
+                        <a class="btn btn-primary, bg-warning" href="/contacto/listado"><b>Contáctanos</b></a>
                     </div>
                 </div>
-                <!-- Tarjeta 2 -->
                 <div class="card col-md-4 p-2"style="width: 30rem; gap: 1rem; background-color: #e0f3f9">
-                    <img src="/img/imagen 2.png" height="270" width="28" class="card-img-top" alt="Nuestra Misión">
+                   <div style="max-height: 270px; overflow: hidden">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/wch-constructora.appspot.com/o/Fotografias%2FOutdoor%2Foutdoor4.jpg?alt=media&token=3d661606-6dc7-437b-ba73-56344830e266"
+                             style="height: 100%; width: 100%; object-fit: cover" alt="Nuestra Misión"/>
+                   </div>
                     <div class="card-body">
-                        <h5 class="card-title" style="color: #005d89";>Nuestra Misión</h5>
+                        <h5 class="card-title" style="color: #005d89";><b>Nuestra Misión</b></h5>
                         <p class="card-text">En WCH, nos comprometemos a construir espacios seguros, 
                             innivadores y sostenibles que te permitan mejorar tu calidad de vida, 
                             enfocandonos en tu  satisfacción  y preferencias como cliente, retandonos en cada proyecto, 
                             a sobrepasar todas las expectativas de nuestros clientes.</p>
                     </div>
                 </div>
-                <!-- Tarjeta 3 -->
                 <div class="card col-md-4 p-2"style="width: 30rem; gap: 1rem; background-color: #e0f3f9"> 
-                    <img src="/img/imagen 3.png" height="270" width="28" class="card-img-top" alt="Nuestra Visión">
+                    <div style="max-height: 270px; overflow: hidden">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/wch-constructora.appspot.com/o/Fotografias%2FIndoor%2Findoor5.jpg?alt=media&token=c9ae2bd7-bd24-4b06-bb64-d0289cc6e1ed" 
+                             style="height: 100%; width: 100%; object-fit: cover" alt="Nuestra Visión"/>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title" style="color: #005d89";>Nuestra Visión</h5>
+                        <h5 class="card-title" style="color: #005d89";><b>Nuestra Visión</b></h5>
                         <p class="card-text">En WCH aspiramos a expandir nuestros límites y que impulsados por nuestra pasión, 
                             llevemos la excelencia y la innovación, de la mano con la calidad a muchos nuevos proyectos de construcción. 
                             Inspirando a los clientes con la creación de espacios personalizados que inspiren y resulten funcionales, 
@@ -58,7 +60,9 @@
                 </div>
             </div>
         </section>
+
+
     </body>
 
-    
+
 </html>

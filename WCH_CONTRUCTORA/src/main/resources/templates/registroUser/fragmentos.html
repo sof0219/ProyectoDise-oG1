@@ -17,8 +17,8 @@
                 <div class="col-md-3">
                     <section>
                         <div class="col-md-4 d-grid">
-                            <a th:href="@{/login}" class="btn btn-primary">
-                                <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                            <a th:href="@{/login}" class="btn text-white" style="background-color: #005d89">
+                                <i class="fas fa-arrow-left"></i> <b>Regresar</b>
                             </a>
                         </div>
                     </section>
@@ -28,7 +28,7 @@
                     <form method="POST" th:action="@{/registroUser/crearUsuario}" th:object="${usuario}" class="was-validated">
                         <div class="card">
                             <div class="card-header">
-                                <h4>[[#{usuario.agregar}]]</h4>
+                                <h4><b>Crear Usuario</b></h4>
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
@@ -47,8 +47,8 @@
                                            name="correo" th:field="*{correo}"
                                            required="true"/></div></div>
                             <div class="card-footer text-end">                                                
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fas fa-envelope"></i> [[#{usuario.activacion}]]
+                                <button type="submit" class="btn" style="background-color: #fec400">
+                                    <i class="fas fa-envelope"></i> <b>[[#{usuario.activacion}]]</b>
                                 </button></div>
                         </div>
                     </form>

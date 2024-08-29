@@ -11,9 +11,9 @@
     <body>
 
         <section th:fragment="bannerPortafolio" class="bg-light">
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 5rem">
-                <h1>Conoce un poco de nuestro trabajo</h1>
-                <h3>Nos enorgullece mostrarte gran parte de nuestro trabajo</h3>
+            <div style="display: flex; flex-direction: column; align-items: center; padding: 3rem">
+                <h2 style="font-size: 36px"><b>Conoce un poco de nuestro trabajo</b></h2>
+                <h4 style="font-size: 20px">Nos enorgullece mostrarte gran parte de nuestro trabajo</h4>
             </div>
 
         </section>
@@ -33,7 +33,7 @@
             </div>
         </section>
 
-        <section th:fragment="tarjetas" class="bg-light">
+        <section th:fragment="tarjetas" class="bg-light pb-5">
             <div style="display: flex; justify-content: center">
                 <div class="row" style="width: 80%; gap: 5rem">
                     <div class="card" th:each="f : ${fotos}" style="width: 18rem; overflow: hidden; height: 18rem">

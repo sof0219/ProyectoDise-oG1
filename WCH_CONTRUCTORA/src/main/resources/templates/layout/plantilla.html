@@ -16,9 +16,10 @@
         <header th:fragment="header" class="header">
             <nav class="navbar navbar-expand-sm navbar-dark p-0" style="background: #005d89">
                 <div class="container">
-                    <a th:href="@{/}" class="navbar-brand">[[#{aplicacion.titulo}]]</a>
+                    <a th:href="@{/}" class="navbar-brand"><b>[[#{aplicacion.titulo}]]</b></a>
                     <a class="navbar-brand" href="#">
-                        <img src="/img/logo_wch.png" alt="Logo" width="80" height="75"/>
+                        <img src="https://firebasestorage.googleapis.com/v0/b/wch-constructora.appspot.com/o/Imágenes%2Flogo_wch.png?alt=media&token=d36d183a-d834-4cb1-9a5f-8f6c75718b13" 
+                             alt="Logo" width="80" height="75"/>
                     </a>
                     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
@@ -31,8 +32,19 @@
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/contacto/listado}">[[#{plantilla.contacto}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/metodos/listado}">[[#{plantilla.metodos}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/citas/listado}">[[#{plantilla.citas}]]</a></li>
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/login}">[[#{plantilla.registroUser}]]</a></li>
+<!--                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/login}">[[#{plantilla.registroUser}]]</a></li>-->
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
+                        </ul>
+                        
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">[[#{plantilla.idioma}]]</a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item"  th:href="@{/(lang=es)}">Español</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/(lang=en)}">English</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/(lang=fr)}">France</a></li>
+                                </ul>
+                            </li>
                         </ul>
                         
                         <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
@@ -46,16 +58,13 @@
                         
                         <ul class="navbar-nav" sec:authorize="isAuthenticated()">
                             <li class="nav-item my-auto text-white">
-                                <img src="@{${session.imagenUsuario}}" 
-                                     class="rounded-circle"
-                                     height="40" 
-                                     alt=" "/>
-                                <span sec:authentication='name'>Jhon</span>
+                                <i class="fa-solid fa-user "></i>
+                                <span sec:authentication=' name'> Jhon</span>
                             </li>
                             <li class="nav-item my-auto text-white">
                                  <form method= "post"
                                   th:action='@{/logout}'>
-                                <button class='btn btn-dark'>
+                                <button class='btn text-white' style="background-color: #005d89">
                                    <i class="fas fa-right-from-bracket"></i>
                                 </button>
                             </form>
@@ -183,8 +192,9 @@
         </div>
 
         <!-- Footer -->
-        <footer th:fragment="footer" class="bg-warning text-white mt-5 p-2">
-            <p class="lead text-center">&COPY;[[#{plantilla.derechos}]]</p>
+        <footer th:fragment="footer" class="footer fixed-bottom bg-info text-white p-1 bg-dark " >
+            <p class="lead text-center" style="font-size: 15px; margin-top: 5px; margin-bottom: 5px">
+                &COPY;[[#{plantilla.derechos}]]</p>
         </footer>
     </body>
 </html>
